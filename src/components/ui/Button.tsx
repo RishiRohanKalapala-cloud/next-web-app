@@ -14,8 +14,8 @@ export default function Button({ variant = "primary", asChild = false, className
   const classes = `${base} ${variants[variant]} ${className}`.trim();
 
   if (asChild && isValidElement(children)) {
-    const child = children as ReactElement;
-    const childClass = (child.props?.className as string) || "";
+    const child = children as ReactElement<{ className?: string }>;
+    const childClass = child.props?.className ?? "";
     return cloneElement(child, { className: `${childClass} ${classes}`.trim(), ...props });
   }
 
